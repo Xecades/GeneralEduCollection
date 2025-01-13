@@ -112,6 +112,10 @@ const fillForm = (data) => {
     dialogVisibility.value = true;
 };
 
+const view = (data) => {
+    router.push("/#" + data.objectId);
+};
+
 const submitForm = async () => {
     dialogLoading.value = true;
     try {
@@ -194,9 +198,10 @@ onMounted(async () => {
             <el-table-column fixed type="selection" width="55" />
             <el-table-column v-for="c in config.columns" :width="c.width" :min-width="c.minWidth" :prop="c.value"
                 :label="c.value" />
-            <el-table-column fixed="right" align="right">
+            <el-table-column fixed="right" align="right" width="140">
                 <template #default="scope">
-                    <el-button @click="fillForm(scope.row)" size="small">Edit</el-button>
+                    <el-button @click="view(scope.row)" type="primary" size="small">查看</el-button>
+                    <el-button @click="fillForm(scope.row)" size="small">编辑</el-button>
                 </template>
             </el-table-column>
         </el-table>
